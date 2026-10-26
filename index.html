@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bropay</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f3f6fb;
+      color: #172554;
+    }
+    header {
+      background: #123c78;
+      color: white;
+      padding: 24px;
+      font-size: 28px;
+      font-weight: bold;
+    }
+    main { padding: 20px; }
+    .card {
+      background: white;
+      padding: 22px;
+      margin: 16px 0;
+      border-radius: 16px;
+      box-shadow: 0 2px 10px #0001;
+    }
+    .balance { font-size: 30px; font-weight: bold; }
+    button {
+      background: #1769e0;
+      color: white;
+      border: 0;
+      border-radius: 10px;
+      padding: 14px;
+      width: 100%;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    .note { color: #64748b; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <header>Bropay</header>
+  <main>
+    <h2>Welcome to Bropay</h2>
+    <div class="card">
+      <p>Your Demo Balance</p>
+      <div class="balance">₹0.00</div>
+      <p class="note">यह केवल डेमो बैलेंस है।</p>
+    </div>
+    <div class="card">
+      <h3>Deposit</h3>
+      <p>अपने अकाउंट में पैसे जोड़ने की सुविधा जल्द आएगी।</p>
+      <button onclick="alert('Deposit सुविधा अभी चालू नहीं है।')">
+        Deposit
+      </button>
+    </div>
+    <div class="card">
+      <h3>Account</h3>
+      <p>Login और OTP सुविधा अगले चरण में जोड़ी जाएगी।</p>
+    </div>
+  </main>
+</body>
+</html>
