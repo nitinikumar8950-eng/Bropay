@@ -2,66 +2,73 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bropay</title>
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f3f6fb;
-      color: #172554;
-    }
-    header {
-      background: #123c78;
-      color: white;
-      padding: 24px;
-      font-size: 28px;
-      font-weight: bold;
-    }
-    main { padding: 20px; }
-    .card {
-      background: white;
-      padding: 22px;
-      margin: 16px 0;
-      border-radius: 16px;
-      box-shadow: 0 2px 10px #0001;
-    }
-    .balance { font-size: 30px; font-weight: bold; }
-    button {
-      background: #1769e0;
-      color: white;
-      border: 0;
-      border-radius: 10px;
-      padding: 14px;
-      width: 100%;
-      font-size: 16px;
-      margin-top: 10px;
-    }
-    .note { color: #64748b; font-size: 14px; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bropay Demo</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f1f5f9;font-family:Arial,sans-serif;color:#172033}
+header{background:#123c8c;color:white;padding:24px 18px;border-radius:0 0 22px 22px}
+header h1{margin:0 0 8px}
+main{max-width:480px;margin:20px auto;padding:0 14px}
+.card{background:white;border-radius:16px;padding:20px;margin-bottom:16px;box-shadow:0 3px 12px #0000000d}
+.balance{font-size:30px;font-weight:bold;margin:12px 0}
+button,.btn{display:block;width:100%;padding:13px;border:0;border-radius:10px;background:#155eef;color:white;font-size:16px;text-align:center;text-decoration:none;margin-top:12px;cursor:pointer}
+.telegram{background:#229ed9}
+.qr{width:100%;max-width:280px;display:block;margin:16px auto;border-radius:8px}
+.note{font-size:13px;color:#64748b;line-height:1.5}
+input{width:100%;padding:12px;border:1px solid #cbd5e1;border-radius:9px;font-size:16px}
+</style>
 </head>
 <body>
-  <header>Bropay</header>
-  <main>
-    <h2>Welcome to Bropay</h2>
-    <div class="card">
-      <p>Your Demo Balance</p>
-      <div class="balance">₹0.00</div>
-      <p class="note">यह केवल डेमो बैलेंस है।</p>
-    </div>
-    <div class="card">
-      <h3>Deposit</h3>
-      <p>अपने अकाउंट में पैसे जोड़ने की सुविधा जल्द आएगी।</p>
-      <button onclick="alert('Deposit सुविधा अभी चालू नहीं है।')">
-        Deposit
-      </button>
-    </div>
-    <div class="card">
-      <h3>Account</h3>
-      <p>Login और OTP सुविधा अगले चरण में जोड़ी जाएगी।</p>
-    </div>
-  </main>
+<header>
+  <h1>Bropay</h1>
+  <div>Welcome to Bropay Demo</div>
+</header>
+<main>
+  <section class="card">
+    <div>आपका Demo Balance</div>
+    <div class="balance" id="balance">₹1,000.00</div>
+    <p class="note">यह केवल टेस्ट बैलेंस है। यह असली पैसे नहीं हैं।</p>
+  </section>
+
+  <section class="card">
+    <h2>UPI Deposit</h2>
+    <p>अपनी पेमेंट QR फोटो नीचे जोड़ें।</p>
+    <img class="qr" src="AccountQRCodeAxis%20Bank%20-%206154_LIGHT_THEME.png"
+         alt="UPI QR Code"
+         onerror="this.style.display='none';document.getElementById('qrhelp').style.display='block'">
+    <p id="qrhelp" class="note" style="display:none">
+      QR फोटो नहीं मिली। फ़ाइल का नाम और जगह जाँचें।
+    </p>
+    <label for="amount">टेस्ट Deposit राशि (₹)</label>
+    <input id="amount" type="number" min="1" max="100000" placeholder="जैसे 100">
+    <button onclick="demoDeposit()">Demo Deposit करें</button>
+    <p class="note">यह बटन केवल डेमो बैलेंस बदलेगा। इससे पेमेंट नहीं होगा।</p>
+  </section>
+
+  <section class="card">
+    <h2>हमसे संपर्क करें</h2>
+    <a class="btn telegram" href="https://t.me/Trust_usdt_buy_sell" target="_blank" rel="noopener">
+      Telegram पर संपर्क करें
+    </a>
+  </section>
+</main>
+<script>
+let balance = 1000;
+function demoDeposit(){
+  const input = document.getElementById('amount');
+  const amount = Number(input.value);
+  if(!Number.isFinite(amount)||amount<=0||amount>100000){
+    alert('कृपया ₹1 से ₹100000 तक की टेस्ट राशि डालें।');
+    return;
+  }
+  balance += amount;
+  document.getElementById('balance').textContent =
+    '₹'+balance.toLocaleString('en-IN',{minimumFractionDigits:2,maximumFractionDigits:2});
+  input.value='';
+  alert('Demo सफल! कोई असली पेमेंट नहीं हुआ।');
+}
+</script>
 </body>
 </html>
